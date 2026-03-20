@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campanha de Páscoa 🐰🍫</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa: #FFB6C1;
+            --lilás: #E6E6FA;
+            --amarelo: #FFFACD;
+            --verde: #98FB98;
+            --branco: #FFF;
+            --texto: #5D4E6D;
+            --dourado: #FFD700;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--lilás) 50%, var(--verde) 100%);
+            min-height: 100vh;
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-item {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .floating-item:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
+        .floating-item:nth-child(2) { top: 15%; right: 8%; animation-delay: 1s; }
+        .floating-item:nth-child(3) { top: 40%; left: 3%; animation-delay: 2s; }
+        .floating-item:nth-child(4) { top: 60%; right: 5%; animation-delay: 0.5s; }
+        .floating-item:nth-child(5) { top: 80%; left: 10%; animation-delay: 1.5s; }
+        .floating-item:nth-child(6) { top: 25%; right: 3%; animation-delay: 2.5s; }
+        .floating-item:nth-child(7) { top: 90%; right: 15%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall 4s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--texto);
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--texto);
+            opacity: 0.9;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(93, 78, 109, 0.15);
+            animation: fadeInUp 0.8s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(93, 78, 109, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-main {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-main::before {
+            content: '🐰';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+
+        .card-main::after {
+            content: '🍫';
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--texto);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title span {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--amarelo) 0%, var(--rosa) 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            margin: 1rem 0;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--texto);
+        }
+
+        .defense-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--texto);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .defense-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--texto);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--amarelo) 0%, var(--verde) 100%);
+            padding: 0 0.3rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .mito-section {
+            animation-delay: 0.3s;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(230,230,250,0.95) 100%);
+        }
+
+        .mito-section::before {
+            content: '👑';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            background: var(--dourado);
+            border-radius: 50%;
+            padding: 0.5rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .mito-section h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--texto);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .mito-card {
+            background: linear-gradient(135deg, var(--lilás) 0%, var(--rosa) 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mito-card:hover {
+            transform: scale(1.02);
+        }
+
+        .mito-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .mito-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mito-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .mito-text {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .mito-quote {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            border-left: 4px solid var(--dourado);
+        }
+
+        .prize-section {
+            background: linear-gradient(135deg, var(--dourado) 0%, #FFA500 50%, var(--dourado) 100%);
+            animation: shine 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes shine {
+            0%, 100% { box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 25px 80px rgba(255, 215, 0, 0.5); }
+        }
+
+        .prize-section::before {
+            content: '🏆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.1;
+        }
+
+        .prize-section h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--texto);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .prize-box {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .prize-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .prize-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .prize-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--texto);
+            margin-bottom: 0.5rem;
+        }
+
+        .prize-desc {
+            font-size: 1rem;
+            color: var(--texto);
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            text-align: center;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rosa) 0%, #FF69B4 100%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--dourado) 0%, #FFA500 100%);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.4);
+        }
+
+        .cta-button.primary:hover {
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease 0.7s both;
+        }
+
+        footer span {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1rem; }
+            .container { padding: 1rem; }
+            .card { padding: 1.5rem; }
+            .info-value { font-size: 1.2rem; }
+            .defense-text { font-size: 1rem; }
+            .floating-item { font-size: 1.5rem; }
+            .prize-section h3 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <span class="floating-item">🥚</span>
+        <span class="floating-item">🍫</span>
+        <span class="floating-item">🐰</span>
+        <span class="floating-item">🥚</span>
+        <span class="floating-item">🍫</span>
+        <span class="floating-item">🐰</span>
+        <span class="floating-item">✨</span>
+    </div>
+
+    <div class="confetti-container" id="confetti"></div>
+
+    <div class="container">
+        <header>
+            <h1>🐰 Campanha de Páscoa 🍫</h1>
+            <h2>Defendendo quem merece esse chocolate!</h2>
+        </header>
+
+        <div class="card card-main">
+            <div class="card-title">
+                🐇 Meu Nome é Rodrigo Lima
+                <span>Meu amigo chocolate é: Jhonatan Aguiar</span>
+            </div>
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-label">Defendido por</div>
+                    <div class="info-value">Rodrigo Lima</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Candidato ao Chocolate</div>
+                    <div class="info-value">Jhonatan Aguiar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card defense-section">
+            <h3>🍫 Por que ele merece levar a Cesta Hershey's & Fini para casa? 🏠</h3>
+            <p class="defense-text">
+                Se tem uma pessoa que merece ganhar essa cesta, com certeza é o <span class="highlight">Jhonatan Aguiar</span>.
+                <br><br>
+                Além de ser gente boa demais, o cara é simplesmente diferenciado. Sempre chega com umas ideias boas, ajuda quando precisa e ainda consegue tirar risada da galera até nos dias mais corridos.
+                <br><br>
+                Sem contar que ele é resenha pura — o ambiente fica muito mais leve quando ele tá por perto. Trabalhar com ele não é só produtividade, é entretenimento também.
+                <br><br>
+                Resumindo: o Jhonatan não só merece essa cesta… ele precisa dessa cesta <span class="highlight">🍫😂</span>
+            </p>
+        </div>
+
+        <div class="card mito-section">
+            <h3>👑 Sobre essa figura chamada Jhonatan</h3>
+            
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">😂</span>
+                    <span class="mito-text"><strong>Tá sempre leve, sempre sorrindo.</strong> Mesmo nos dias mais puxados, ele consegue manter o clima tranquilo.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">❤️</span>
+                    <span class="mito-text"><strong>Bom coração de verdade.</strong> Se preocupa com os outros, ajuda sem pensar duas vezes e tá sempre disposto quando alguém precisa.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">🤝</span>
+                    <span class="mito-text"><strong>Parceiro pra tudo.</strong> Pode contar com ele pra qualquer situação. Nunca deixa ninguém na mão.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">🧠</span>
+                    <span class="mito-text"><strong>Desenrolado e inteligente.</strong> Resolve problema rápido e ainda acha tempo pra zoar depois. Equilíbrio perfeito.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">😎</span>
+                    <span class="mito-text"><strong>Energia boa.</strong> Onde ele chega, o ambiente muda. Fica mais leve, mais tranquilo, mais daora.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">🔥</span>
+                    <span class="mito-text"><strong>Sempre fortalece geral.</strong> Tá ali incentivando, apoiando e levantando a galera quando precisa. Não deixa ninguém desanimar.</span>
+                </div>
+            </div>
+
+            <div class="mito-card">
+                <div class="mito-item">
+                    <span class="mito-icon">🚀</span>
+                    <span class="mito-text"><strong>Presença que faz diferença.</strong> Não é só mais um no grupo — quando ele tá, tudo flui melhor. Dá outra vibe!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <button class="cta-button primary" onclick="votar()">🐰 Esse cara merece demais! 🍫</button>
+        </div>
+
+        <footer>
+            <span>🐰🍫🥚🍫🐰🍫🥚</span>
+            Feliz Páscoa! Vote no seu amigo coelho favorito!
+        </footer>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const container = document.getElementById('confetti');
+            const colors = ['#FFB6C1', '#E6E6FA', '#FFFACD', '#98FB98', '#FFD700', '#FF69B4'];
+            const emojis = ['🥚', '🍫', '🐰', '✨', '🌸', '🎀'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    container.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, Math.random() * 3000);
+            }
+        }
+
+        function votar() {
+            createConfetti();
+            setTimeout(() => {
+                alert('🐰 VOTO REGISTRADO! 🍫\n\n⭐ Parabéns!\n\nVocê votou no Jhonatan Aguiar!\n\nQue ele receba esse chocolate merecido!\n\n🎉🐰🍫🎉');
+            }, 500);
+        }
+
+        window.addEventListener('load', () => {
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
